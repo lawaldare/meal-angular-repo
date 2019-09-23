@@ -1,20 +1,61 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+
+<div class="container">
+    <div class="header mt-2">
+        <h1 class="title">Feeling Hungry?</h1>
+        <p class="title__content">Get a random meal by clicking below</p>
+        <button class="btn btn-outline-primary btn-lg" (click)="getAMealAtRandom()">Get Meal</button>
+    </div>
+    <div class="card mt-4" *ngIf="meal">
+        <div class="row no-gutters mt-4">
+            <div class="col-md-4">
+              <img src="{{meal.strMealThumb}}" class="card-img p-2" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">{{meal.strMeal}}</h5>
+                <p class="card-text">{{meal.strInstructions}}</p>
+                <p class="card-text lead"><b>Category:</b> {{meal.strCategory}}</p>
+                <p class="card-text text-muted">{{meal.strArea}}'s Meal!😋</p>
+              </div>
+            </div>
+        </div>
+        <div class="list mt-4">
+              <ul class="list-group">
+                <li class="list-group-item active">Ingredients</li>
+                <li class="list-group-item" *ngIf="meal.strIngredient1">{{meal.strIngredient1}} ({{meal.strMeasure1}})</li>
+                <li class="list-group-item" *ngIf="meal.strIngredient2">{{meal.strIngredient2}} ({{meal.strMeasure2}}) </li>
+                <li class="list-group-item" *ngIf="meal.strIngredient3">{{meal.strIngredient3}} ({{meal.strMeasure3}}) </li>
+                <li class="list-group-item" *ngIf="meal.strIngredient4">{{meal.strIngredient4}} ({{meal.strMeasure4}}) </li>
+                <li class="list-group-item" *ngIf="meal.strIngredient5">{{meal.strIngredient5}} ({{meal.strMeasure5}}) </li>
+                <li class="list-group-item" *ngIf="meal.strIngredient6">{{meal.strIngredient6}} ({{meal.strMeasure6}}) </li>
+                <li class="list-group-item" *ngIf="meal.strIngredient7">{{meal.strIngredient7}} ({{meal.strMeasure7}}) </li>
+                <li class="list-group-item" *ngIf="meal.strIngredient8">{{meal.strIngredient8}} ({{meal.strMeasure8}}) </li>
+                <li class="list-group-item" *ngIf="meal.strIngredient9">{{meal.strIngredient9}} ({{meal.strMeasure9}}) </li>
+                <li class="list-group-item" *ngIf="meal.strIngredient10">{{meal.strIngredient10}} ({{meal.strMeasure10}}) </li>
+                <li class="list-group-item" *ngIf="meal.strIngredient11">{{meal.strIngredient11}} ({{meal.strMeasure11}}) </li>
+                <li class="list-group-item" *ngIf="meal.strIngredient12">{{meal.strIngredient12}} ({{meal.strMeasure12}}) </li>
+                <li class="list-group-item" *ngIf="meal.strIngredient13">{{meal.strIngredient13}} ({{meal.strMeasure13}}) </li>
+                <li class="list-group-item" *ngIf="meal.strIngredient14">{{meal.strIngredient14}} ({{meal.strMeasure14}}) </li>
+                <li class="list-group-item" *ngIf="meal.strIngredient15">{{meal.strIngredient15}} ({{meal.strMeasure15}}) </li>
+                <li class="list-group-item" *ngIf="meal.strIngredient16">{{meal.strIngredient16}} ({{meal.strMeasure16}}) </li>
+                <li class="list-group-item" *ngIf="meal.strIngredient17">{{meal.strIngredient17}} ({{meal.strMeasure17}}) </li>
+                <li class="list-group-item" *ngIf="meal.strIngredient18">{{meal.strIngredient18}} ({{meal.strMeasure18}}) </li>
+                <li class="list-group-item" *ngIf="meal.strIngredient19">{{meal.strIngredient19}} ({{meal.strMeasure19}}) </li>
+                <li class="list-group-item" *ngIf="meal.strIngredient20">{{meal.strIngredient20}} ({{meal.strMeasure20}}) </li>
+              </ul>
+        </div>
+        <div class="embed-responsive embed-responsive-16by9 mt-4">
+                <iframe class="embed-responsive-item" [src]="getVideo(meal.strYoutube) | safe" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+    </div>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+
+
+
+<!-- https://www.youtube.com/EtVkwVKLc_M -->
+
+
+
+
+
 
