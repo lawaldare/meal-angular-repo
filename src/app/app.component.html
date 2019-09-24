@@ -5,6 +5,14 @@
         <p class="title__content">Get a random meal by clicking below</p>
         <button class="btn btn-outline-primary btn-lg" (click)="getAMealAtRandom()">Get Meal</button>
     </div>
+
+
+    <ngx-spinner>
+      <p class="lead text-white">Getting your meal😋</p>
+    </ngx-spinner>
+
+
+
     <div class="card mt-4" *ngIf="meal">
         <div class="row no-gutters mt-4">
             <div class="col-md-4">
@@ -53,7 +61,6 @@
 
 
 
-<!-- https://www.youtube.com/EtVkwVKLc_M -->
 
 
 

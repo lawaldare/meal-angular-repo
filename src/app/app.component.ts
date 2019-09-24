@@ -1,5 +1,6 @@
 import { MealService } from './meal.service';
 import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-root',
@@ -12,16 +13,19 @@ export class AppComponent implements OnInit {
   meal: any;
 
 
-  constructor(private mealService: MealService) {}
+  constructor(private mealService: MealService, private spinner: NgxSpinnerService) {}
 
   ngOnInit() {}
 
 
   getAMealAtRandom() {
-    console.log('oops!');
+    this.spinner.show();
     this.mealService.getMeal().subscribe(data => {
-      this.meal = data.meals[0];
-      console.log(this.meal);
+      setTimeout(() => {
+        /** spinner ends after 5 seconds */
+        this.meal = data.meals[0];
+        this.spinner.hide();
+      }, 1000);
     });
   }
 
