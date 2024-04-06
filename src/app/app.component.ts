@@ -1,36 +1,33 @@
-import { MealService } from './meal.service';
-import { Component, OnInit } from '@angular/core';
-import { NgxSpinnerService } from 'ngx-spinner';
+import { MealService } from "./meal.service";
+import { Component } from "@angular/core";
+import { NgxSpinnerService } from "ngx-spinner";
+import { Observable, delay, map, tap } from "rxjs";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.scss"],
 })
-export class AppComponent implements OnInit {
-  title = 'getMeal';
+export class AppComponent {
+  meal$: Observable<any>;
 
-  meal: any;
+  constructor(
+    private mealService: MealService,
+    private spinner: NgxSpinnerService
+  ) {}
 
-
-  constructor(private mealService: MealService, private spinner: NgxSpinnerService) {}
-
-  ngOnInit() {}
-
-
-  getAMealAtRandom() {
-    this.spinner.show();
-    this.mealService.getMeal().subscribe(data => {
-      setTimeout(() => {
-        /** spinner ends after 5 seconds */
-        this.meal = data.meals[0];
-        this.spinner.hide();
-      }, 1000);
-    });
+  getAMeal() {
+    this.meal$ = this.mealService.getMeal().pipe(
+      tap(() => this.spinner.show()),
+      delay(1000),
+      map((data) => {
+        console.log(data);
+        return {
+          ...data.meals[0],
+          strYoutube: data.meals[0].strYoutube.replace("watch?v=", "embed/"),
+        };
+      }),
+      tap(() => this.spinner.hide())
+    );
   }
-
-  getVideo(str) {
-    return str.replace('watch?v=', 'embed/');
-  }
-
 }
