@@ -21,7 +21,6 @@ export class AppComponent {
       tap(() => this.spinner.show()),
       delay(1000),
       map((data) => {
-        console.log(data);
         return {
           ...data.meals[0],
           strYoutube: data.meals[0].strYoutube.replace("watch?v=", "embed/"),
